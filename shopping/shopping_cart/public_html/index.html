@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <script src="jquery-1.8.3.min.js"></script>
+   <script src="Product.js"></script>
+   <script src="Cart.js"></script>
+   <script src="listproduct.js"></script>
+   <script src="Store.js"></script>
+   <title>Shopping Cart</title>
+</head>
+
+<body>
+   <table class="main" width="100%" border="1">
+
+      <tr>
+         <td colspan="2" bgcolor="#88BBD6">
+            <h1 class="main">Shopping Cart</h1>
+            <h5 id="firstname">Please <a onclick="displayLogin()" href="#">Login</a></h5>
+            <script>
+                var loggedin = false;
+                
+                if (getCookie("firstname") != "")
+                {
+                    $('#firstname').html('Welcome back ' + getCookie("firstname"));
+                    loggedin = true;
+                }
+            </script>
+         </td>
+      </tr>
+      <tr valign="top">
+         <td bgcolor="#E9E9E9" width="100">
+            <div id="menu" class="menu">
+               <ul>
+                  <li>
+                     <center><a onclick="getList()" href="#">Home</a></center>
+                  </li>
+                  <li>
+                     <center><a onclick="displayCart()" href="#">Cart</a></center>
+                  </li>
+                  <li id="menulogin">
+                     <center><a onclick="displayLogin()" href="#">Login</a></center>
+                  </li>
+                  <li id="menucreateacc">
+                     <center><a onclick="displayCreateAcc()" href="#">Create Account</a></center>
+                  </li>
+                  <li id="menulogout">
+                     <center><a onclick="logout()" href="#">Logout</a></center>
+                  </li>
+                  
+               </ul>
+            </div>
+         </td>
+         
+      <script>
+          //Adjust menu if were logged in or not.
+          if (loggedin) {
+              $('#menucreateacc').html('');
+              $('#menulogin').html('');
+          }
+          else {
+              $('#menulogout').html('');
+          }
+          
+      </script>
+
+         <td id="output" bgcolor="#E9E9E9" width="400" height="200">
+            <script>getList()</script>
+         </td>
+      <tr>
+         <td colspan="2" bgcolor="#88BBD6">
+            <center>
+               <p class="main">Created by James Hartley</p>
+            </center>
+         </td>
+      </tr>
+
+   </table>
+</body>
+
+</html>
