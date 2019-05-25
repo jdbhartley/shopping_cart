@@ -2,6 +2,11 @@ function Cart() {
     //Array for holding items in the cart
     this.items = [];
 
+    Cart.prototype.save = function() {
+        var itemsJSON = JSON.stringify(this.items);
+        createCookie("items", itemsJSON, 12);
+    }
+    
     Cart.prototype.addItem = function (item) {
         //Check if its already in the cart
         var inCart = false;
@@ -14,6 +19,19 @@ function Cart() {
 
         if (inCart === false) {
             this.items.push(item);
+        }
+        
+        this.save();
+    }
+    
+    Cart.prototype.load = function () {
+        var itemsJSON = getCookie("items");
+        var newitems = JSON.parse(itemsJSON);
+        
+        for (var i = 0; i < newitems.length; i++) {
+            var obj = new Product(newitems[i]);
+            console.log(obj.name);
+            this.items.push(obj);
         }
     }
 
@@ -44,6 +62,7 @@ function Cart() {
                     this.items.splice(i, 1);
                 }
             }
+            this.save();
             displayCart();
         }
 

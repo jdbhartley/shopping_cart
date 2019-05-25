@@ -1,6 +1,10 @@
 //Stores the selected index
 var cart = new Cart();
 
+if (getCookie("items") != '') {
+    cart.load();
+}
+
 // handles the click event, sends the query
 function getList() {
     $.ajax({
