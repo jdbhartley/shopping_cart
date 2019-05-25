@@ -33,7 +33,7 @@ function Cart() {
 
     Cart.prototype.addBySQL = function (sql_response) {
         var res = sql_response.split(":");
-        tmp = new Product(res[0], res[1], res[3], res[2]);
+        tmp = new Product(res[0], res[1], res[3], parseFloat(res[2]));
         this.addItem(tmp);
     }
 
@@ -67,6 +67,7 @@ function Cart() {
         html += "<tbody>";
 
         for (i = 0; i < this.items.length; i++) {
+            console.log("price: " + this.items[i].price);
             html += this.items[i].display();
             total += this.items[i].price;
         }

@@ -13,11 +13,10 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 } 
 
-$sql = "INSERT INTO accounts (firstname, lastname, email, password)
-VALUES ('" . $_GET['firstname'] . "','" . $_GET['lastname'] . "','" . $_GET['email'] . "','" . $_GET['password'] . "')";
+$sql = "UPDATE products SET name='" .$_GET["name"] ."', description='" . $_GET["desc"] . "', price='" . $_GET["price"] . "', imgPath='" . $_GET["imgPath"] . "' WHERE id='" . $_GET["id"] . "'";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Account Created! Please Login to Continue";
+    echo "Product Updated Successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
